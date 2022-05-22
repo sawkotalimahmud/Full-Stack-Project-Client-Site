@@ -2,8 +2,8 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div>
-      <div class="hero min-h-screen bg-base-200">
+    <div className="mt-20" >
+      <div class="hero h-96" >
         <div class="hero-content flex-col lg:flex-row-reverse">
           <img
             src="https://i.ibb.co/yFwmjbC/Adobe-Stock-228601171-1024x553.jpg"

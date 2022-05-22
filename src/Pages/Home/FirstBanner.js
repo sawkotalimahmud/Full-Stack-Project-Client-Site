@@ -3,12 +3,12 @@ import React from "react";
 const FirstBanner = () => {
   return (
     <div
-      class="hero min-h-screen"
+      class="hero h-96"
       style={{
-        backgroundImage: `url(https://i.ibb.co/xHS2ncT/tools-4-1600x400-e2autover-201805161212.jpg)`,
+        backgroundImage: `url(https://i.ibb.co/x5DnRDm/footer.png)`,
       }}
     >
-      <div class="hero-overlay bg-opacity-60"></div>
+      <div class="hero-overlay "></div>
       <div class="hero-content text-center text-neutral-content">
         <div class="max-w-md">
           <h1 class="mb-5 text-5xl font-bold">Let's Get A Deal</h1>

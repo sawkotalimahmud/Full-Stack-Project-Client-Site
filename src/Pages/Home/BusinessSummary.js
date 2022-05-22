@@ -26,7 +26,7 @@ const BusinessSummary = () => {
         <div class="divider w-10 "></div>
         <div class="divider w-5 "></div>
       </div>
-      <div className="flex justify-center gap-10 m-10">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 m-10">
         <div class="stats shadow">
           <div class="stat items-center">
             <svg
