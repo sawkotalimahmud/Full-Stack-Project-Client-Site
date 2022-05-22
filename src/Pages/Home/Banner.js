@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -23,7 +24,9 @@ const Banner = () => {
             </p>
             <button data-aos="zoom-in"
             data-aos-delay="1200"
-             className="btn btn-primary">Purchase Now</button>
+             className="btn btn-primary"><NavLink to={"/purchase"} className="rounded-lg">
+             Purchase Now
+           </NavLink></button>
           </div>
         </div>
       </div>

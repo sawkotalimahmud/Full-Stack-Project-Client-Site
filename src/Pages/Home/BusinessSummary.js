@@ -12,7 +12,7 @@ function MyComponent() {
 
 const BusinessSummary = () => {
   return (
-    <div className="my-10" style={{
+    <div className="my-28" style={{
         backgroundImage: `url(https://i.ibb.co/x5DnRDm/footer.png)`,
       }}>
       <h2 className="uppercase text-5xl text-center font-bold mt-10">
@@ -21,7 +21,7 @@ const BusinessSummary = () => {
       <h2 className="uppercase text-2xl text-center mt-5">
         Try To understand users expectation
       </h2>
-      <div className="flex justify-center gap-2 m-5">
+      <div className="flex justify-center gap-2 mb-28">
         <div className="divider w-20 "></div>
         <div className="divider w-10 "></div>
         <div className="divider w-5 "></div>

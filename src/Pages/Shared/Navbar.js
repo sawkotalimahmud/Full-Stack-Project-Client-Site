@@ -36,9 +36,16 @@ const Navbar = ({ children }) => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to={"/purchase"} className="rounded-lg">
+                  Purchase Now
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to={"/about"} className="rounded-lg">
                   About
                 </NavLink>
+              </li>
+              <li>
                 <NavLink to={"/login"} className="rounded-lg">
                   Login
                 </NavLink>
@@ -59,9 +66,16 @@ const Navbar = ({ children }) => {
             </NavLink>
           </li>
           <li>
+            <NavLink to={"/purchase"} className="rounded-lg">
+              Purchase Now
+            </NavLink>
+          </li>
+          <li>
             <NavLink to={"/about"} className="rounded-lg">
               About
             </NavLink>
+          </li>
+          <li>
             <NavLink to={"/login"} className="rounded-lg">
               Login
             </NavLink>

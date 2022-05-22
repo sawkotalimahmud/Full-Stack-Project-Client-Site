@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Product = ({product}) => {
   return (
@@ -17,7 +18,9 @@ const Product = ({product}) => {
         <p>Available quantity: {product.available_quantity}</p>
         <p>Price (Pre Unit): ${product.per_unit_price}</p>
         <div className="card-actions">
-          <button className="btn btn-primary">Purchase Now</button>
+          <button className="btn btn-primary"><NavLink to={"/purchase"} className="rounded-lg">
+              Purchase Now
+            </NavLink></button>
         </div>
       </div>
     </div>
