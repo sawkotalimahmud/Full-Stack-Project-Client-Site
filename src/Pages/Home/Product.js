@@ -2,22 +2,22 @@ import React from "react";
 
 const Product = ({product}) => {
   return (
-    <div class="card lg:max-w-lg bg-base-100 shadow-xl">
-      <figure class="px-10 pt-10">
+    <div className="card lg:max-w-lg bg-base-100 shadow-xl">
+      <figure className="px-10 pt-10">
         <img
           src={product.image}
           alt="Shoes"
-          class="rounded-xl"
+          className="rounded-xl"
         />
       </figure>
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">{product.name}</h2>
+      <div className="card-body items-center text-center">
+        <h2 className="card-title">{product.name}</h2>
         <p>{product.description}</p>
         <p>Minimum order quantity: {product.min_order_quantity}</p>
         <p>Available quantity: {product.available_quantity}</p>
         <p>Price (Pre Unit): ${product.per_unit_price}</p>
-        <div class="card-actions">
-          <button class="btn btn-primary">Purchase Now</button>
+        <div className="card-actions">
+          <button className="btn btn-primary">Purchase Now</button>
         </div>
       </div>
     </div>

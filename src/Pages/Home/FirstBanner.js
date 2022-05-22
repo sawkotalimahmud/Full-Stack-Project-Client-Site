@@ -2,24 +2,16 @@ import React from "react";
 
 const FirstBanner = () => {
   return (
-    <div
-      class="hero h-96"
-      style={{
-        backgroundImage: `url(https://i.ibb.co/x5DnRDm/footer.png)`,
-      }}
-    >
-      <div class="hero-overlay "></div>
-      <div class="hero-content text-center text-neutral-content">
-        <div class="max-w-md">
-          <h1 class="mb-5 text-5xl font-bold">Let's Get A Deal</h1>
-          <p class="mb-5">
-            SARAH ENTERPRISE is one of the best manufacturer company for all
-            kind of home improvement tool
-          </p>
-          <button class="btn btn-primary">Get Started</button>
-        </div>
-      </div>
+    <div className="hero h-96 my-10">
+  <div className="hero-content text-center">
+    <div className="max-w-md">
+      <h1 className="text-5xl font-bold">Lets Get A Deal</h1>
+      <p className="py-6">SARAH ENTERPRISE is one of the best manufacturer company for all
+            kind of home improvement tool.</p>
+      <button className="btn btn-primary">Get Started</button>
     </div>
+  </div>
+</div>
   );
 };
 

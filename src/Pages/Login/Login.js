@@ -1,11 +1,45 @@
-import React from 'react';
+import React from "react";
 
 const Login = () => {
-    return (
-        <div>
-            <h2>This is login</h2>
+  return (
+    <div className="hero min-h-screen ">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card-body">
+            <h2 className="text-2xl text-center">Login</h2>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="text"
+                placeholder="email"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="text"
+                placeholder="password"
+                className="input input-bordered"
+              />
+              <label className="label">
+                <a href="#" className="label-text-alt link link-hover">
+                  Forgot password?
+                </a>
+              </label>
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn btn-primary">Login</button>
+            </div>
+            <div class="divider">OR</div>
+            <button className="btn btn-glass hover:btn-primary">continue with google</button>
+          </div>
         </div>
-    );
+      </div>
+  );
 };
 
 export default Login;
