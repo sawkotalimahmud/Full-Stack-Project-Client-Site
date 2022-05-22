@@ -39,6 +39,9 @@ const Navbar = ({ children }) => {
                 <NavLink to={"/about"} className="rounded-lg">
                   About
                 </NavLink>
+                <NavLink to={"/login"} className="rounded-lg">
+                  Login
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -58,6 +61,9 @@ const Navbar = ({ children }) => {
           <li>
             <NavLink to={"/about"} className="rounded-lg">
               About
+            </NavLink>
+            <NavLink to={"/login"} className="rounded-lg">
+              Login
             </NavLink>
           </li>
         </ul>
