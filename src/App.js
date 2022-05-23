@@ -9,6 +9,7 @@ import "aos/dist/aos.css"; // You can also use <link> for styles
 import { useEffect } from "react";
 import PrivateRoute from "./Authentication/PrivateRoute";
 import Purchase from "./Pages/Purchase/Purchase";
+import SignUp from "./Pages/Login/SignUp";
 
 function App() {
   useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/signup" element={<SignUp></SignUp>}></Route>
           <Route
             path="/purchase"
             element={
