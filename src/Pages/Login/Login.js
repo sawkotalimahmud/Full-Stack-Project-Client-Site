@@ -1,68 +1,142 @@
-import React, { useRef } from "react";
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import React, { useEffect } from "react";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
-
+import { useForm } from "react-hook-form";
+import Loading from "../Shared/Loading";
 
 const Login = () => {
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
 
   
-  const emailRef = useRef('');
-  const passwordRef = useRef('');
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
-  if(user){
-    console.log(user);
+  let singInError;
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
+
+ if(user || gUser){
+   navigate('/')
+ }
+
+  if (gLoading || loading ) {
+    return <Loading></Loading>
   }
 
-  const navigateSignUp = event => {
-    navigate('/');
-}
+  if (error || gError ) {
+    singInError = (
+      <p className="text-red-500">
+        { error?.message || gError?.message }
+      </p>
+    );
+  }
 
+  
 
+  const onSubmit = async data => {
+   await signInWithEmailAndPassword(data.email, data.password);
+    navigate("/");
+  };
   return (
-    <div className="hero min-h-screen ">
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
-            <h2 className="text-2xl text-center">Login</h2>
-            <div className="form-control">
+    <div className="flex h-screen justify-center items-center">
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="text-center text-2xl font-bold">Login</h2>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
-                type="text"
-                placeholder="email"
-                className="input input-bordered"
+                type="email"
+                placeholder="Enter Email"
+                className="input input-bordered w-full max-w-xs"
+                {...register("email", {
+                  required: {
+                    value: true,
+                    message: "Email Is Required",
+                  },
+                  pattern: {
+                    value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                    message: "Please Provide Valid Email",
+                  },
+                })}
               />
+              <label className="label">
+                {errors.email?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.email.message}
+                  </span>
+                )}
+                {errors.email?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.email.message}
+                  </span>
+                )}
+              </label>
             </div>
-            <div className="form-control">
+            <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
-                placeholder="password"
-                className="input input-bordered"
+                type="password"
+                placeholder="Password"
+                className="input input-bordered w-full max-w-xs"
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Password Is Required",
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "Must Be Longer Then 6",
+                  },
+                })}
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
-              <label className="label">
-              <Link as={Link} to="/signup"  onClick={navigateSignUp}  className="label-text-alt link link-hover" >Don't Have An Account? Please Sign Up Here</Link>
+                {errors.password?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
               </label>
             </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
-            </div>
-            <div className="divider">OR</div>
-            <button onClick={() => signInWithGoogle()} className="btn btn-glass hover:btn-primary">continue with google</button>
-          </div>
+            <button className="mb-3" >Forget Password?</button>
+            {singInError}
+            <input
+              className="btn w-full max-w-xs text-white"
+              type="submit"
+              value="Login"
+            />
+          </form>
+          <p><span>New To Doctors Portal? <Link to={'/signup'} className="text-primary">Create New Account</Link> </span></p>
+          <div className="divider">OR</div>
+          <button
+            onClick={() => signInWithGoogle()}
+            className="btn btn-outline"
+          >
+            Continue With Google
+          </button>
         </div>
       </div>
+    </div>
   );
 };
 
