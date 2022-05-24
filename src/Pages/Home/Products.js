@@ -1,36 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Product from './Product';
 
 const Products = () => {
-    const products = [
-        {
-            _id: '1',
-            name: 'ToolBox',
-            description: 'This is one of the best quality and useful easy to cary ToolBox for every home',
-            min_order_quantity:'100',
-            available_quantity: '10000',
-            per_unit_price: '1000',
-            image: 'https://i.ibb.co/n7M3FHB/1bdc5c63-45e1-47a4-a035-699528e01804-1-a088e4441aa76135a57a2c7c681d6845.png'
-        },
-        {
-            _id: '2',
-            name: 'Drill',
-            description: 'This is one of the best quality and useful easy to cary and use Drill for your work',
-            min_order_quantity:'100',
-            available_quantity: '20000',
-            per_unit_price: '2500',
-            image: 'https://i.ibb.co/phSz7qH/download.png'
-        },
-        {
-            _id: '3',
-            name: 'Vise',
-            description: ' This is one of the best in market Vise and best quality product for your work',
-            min_order_quantity:'100',
-            available_quantity: '15000',
-            per_unit_price: '3000',
-            image: 'https://i.ibb.co/VSWQSzy/4a72ba8890275a2da16eff7d6f78af0f.png'
-        }
-    ]
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/products')
+        .then(res => res.json())
+        .then(data => setProducts(data))
+    },[])
+   
     return (
         <div>
             <div>

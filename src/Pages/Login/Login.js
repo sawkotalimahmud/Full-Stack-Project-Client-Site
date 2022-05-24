@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
@@ -27,7 +27,7 @@ const Login = () => {
   let from = location.state?.from?.pathname || "/";
 
  if(user || gUser){
-   navigate('/')
+  navigate(from, { replace: true })
  }
 
   if (gLoading || loading ) {

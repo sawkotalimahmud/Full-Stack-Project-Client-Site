@@ -46,7 +46,7 @@ const SignUp = () => {
   }
 
   if(user || gUser){
-      navigate('/')
+    navigate(from, { replace: true })
   }
 
   const onSubmit = async (data) => {

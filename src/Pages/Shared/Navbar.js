@@ -44,11 +44,7 @@ const Navbar = ({ children }) => {
                   Home
                 </NavLink>
               </li>
-              <li>
-                <NavLink to={"/purchase"} className="rounded-lg">
-                  Purchase Now
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink to={"/about"} className="rounded-lg">
                   About
@@ -56,11 +52,17 @@ const Navbar = ({ children }) => {
               </li>
               <li>
                 {user ? (
-                  <NavLink as={Link} to={"/"} onClick={handleSignOut}>
-                    Sing Out
-                  </NavLink>
+                  <>
+                    <NavLink to={"/purchase"} className="rounded-lg">
+                      Purchase Now
+                    </NavLink>
+
+                    <NavLink  to={"/"} onClick={handleSignOut} className="rounded-lg mx-3">
+                      Sing Out
+                    </NavLink>
+                  </>
                 ) : (
-                  <NavLink as={Link} to="/login">
+                  <NavLink to="/login">
                     Login
                   </NavLink>
                 )}
@@ -81,22 +83,23 @@ const Navbar = ({ children }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/purchase"} className="rounded-lg">
-              Purchase Now
-            </NavLink>
-          </li>
-          <li>
             <NavLink to={"/about"} className="rounded-lg">
               About
             </NavLink>
           </li>
           <li>
             {user ? (
-              <NavLink as={Link} to={"/"} onClick={handleSignOut}>
-                Sing Out
-              </NavLink>
+               <>
+               <NavLink to={"/purchase"} className="rounded-lg">
+                 Purchase Now
+               </NavLink>
+
+               <NavLink  to={"/"} onClick={handleSignOut} className="rounded-lg my-3">
+                 Sing Out
+               </NavLink>
+             </>
             ) : (
-              <NavLink as={Link} to="/login">
+              <NavLink to="/login">
                 Login
               </NavLink>
             )}
