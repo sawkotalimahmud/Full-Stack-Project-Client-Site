@@ -1,11 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const MyOrder = () => {
-    return (
-        <div>
-            <h2>My Orders</h2>
-        </div>
-    );
+  const [orders, setOrders] = useState([]);
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      fetch(`http://localhost:5000/orders?orderer=${user.email}`)
+        .then((res) => res.json())
+        .then((data) => setOrders(data));
+    }
+  }, [user]);
+  console.log(orders);
+  return (
+    <div>
+      <h2>My Orders: {orders.length}</h2>
+      <div class="overflow-x-auto">
+  <table class="table w-full">
+    {/* <!-- head --> */}
+    <thead>
+      <tr>
+        <th></th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+        {
+            orders.map((o, index) =><tr>
+                <th>{index + 1}</th>
+                <td>{o.productName}</td>
+                <td>{o.price}</td>
+                <td>{o.quantity}</td>
+                <td>{o.address}</td>
+              </tr>)
+        }
+      
+    </tbody>
+  </table>
+</div>
+    </div>
+  );
 };
 
 export default MyOrder;
