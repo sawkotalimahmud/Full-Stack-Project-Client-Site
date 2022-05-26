@@ -27,7 +27,7 @@ const Login = () => {
   let from = location.state?.from?.pathname || "/";
 
  if(user || gUser){
-  navigate(from, { replace: true })
+  navigate(from, { replace: true });
  }
 
   if (gLoading || loading ) {

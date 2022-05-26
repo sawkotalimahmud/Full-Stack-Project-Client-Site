@@ -1,11 +1,12 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Navbar = ({ children }) => {
   const [user] = useAuthState(auth);
+  const {pathname} = useLocation();
 
   const handleSignOut = () => {
     signOut(auth);
@@ -17,6 +18,24 @@ const Navbar = ({ children }) => {
       <div className="drawer-content flex flex-col">
         {/* <!-- Navbar --> */}
         <div className="w-full navbar bg-base-300">
+          
+          { pathname.includes("dashboard") && <label tabindex="0" for="my-drawer-2" class="btn btn-ghost btn-circle lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h7"
+              />
+            </svg>
+          </label>}
           <div className="flex-1 px-2 mx-2 text-2xl">Sarah Enterprise</div>
           <div className="flex-none lg:hidden">
             <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
@@ -53,18 +72,20 @@ const Navbar = ({ children }) => {
               <li>
                 {user ? (
                   <>
-                    <NavLink to={"/purchase"} className="rounded-lg">
-                      Purchase Now
+                    <NavLink to={"/dashboard"} className="rounded-lg">
+                      Dashboard
                     </NavLink>
 
-                    <NavLink  to={"/"} onClick={handleSignOut} className="rounded-lg mx-3">
+                    <NavLink
+                      to={"/"}
+                      onClick={handleSignOut}
+                      className="rounded-lg mx-3"
+                    >
                       Sing Out
                     </NavLink>
                   </>
                 ) : (
-                  <NavLink to="/login">
-                    Login
-                  </NavLink>
+                  <NavLink to="/login">Login</NavLink>
                 )}
               </li>
             </ul>
@@ -89,19 +110,21 @@ const Navbar = ({ children }) => {
           </li>
           <li>
             {user ? (
-               <>
-               <NavLink to={"/purchase"} className="rounded-lg">
-                 Purchase Now
-               </NavLink>
+              <>
+                <NavLink to={"/dashboard"} className="rounded-lg">
+                  Dashboard
+                </NavLink>
 
-               <NavLink  to={"/"} onClick={handleSignOut} className="rounded-lg my-3">
-                 Sing Out
-               </NavLink>
-             </>
+                <NavLink
+                  to={"/"}
+                  onClick={handleSignOut}
+                  className="rounded-lg my-3"
+                >
+                  Sing Out
+                </NavLink>
+              </>
             ) : (
-              <NavLink to="/login">
-                Login
-              </NavLink>
+              <NavLink to="/login">Login</NavLink>
             )}
           </li>
         </ul>

@@ -10,6 +10,11 @@ import { useEffect } from "react";
 import PrivateRoute from "./Authentication/PrivateRoute";
 import Purchase from "./Pages/Purchase/Purchase";
 import SignUp from "./Pages/Login/SignUp";
+import { ToastContainer } from "react-toastify";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import MyOrder from "./Pages/Dashboard/MyOrder";
+import MyProfile from "./Pages/Dashboard/MyProfile";
+import MyReview from "./Pages/Dashboard/MyReview";
 
 function App() {
   useEffect(() => {
@@ -31,9 +36,21 @@ function App() {
               </PrivateRoute>
             }
           ></Route>
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard></Dashboard>
+              </PrivateRoute>
+            }>
+              <Route path="order" element={<MyOrder></MyOrder>}></Route>
+              <Route path="profile" element={<MyProfile></MyProfile>}></Route>
+              <Route path="review" element={<MyReview></MyReview>}></Route>
+          </Route>
         </Routes>
         <Footer />
       </Navbar>
+      <ToastContainer/>
     </div>
   );
 }

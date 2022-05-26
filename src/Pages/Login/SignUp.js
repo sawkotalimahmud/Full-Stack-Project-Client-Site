@@ -1,25 +1,20 @@
-import React from 'react';
+import React from "react";
 import {
-    useCreateUserWithEmailAndPassword,
-    useSignInWithGoogle,
-    useUpdateProfile,
-  } from "react-firebase-hooks/auth";
-  import { Link,  useLocation,  useNavigate } from "react-router-dom";
-  import auth from "../../firebase.init";
-  import { useForm } from "react-hook-form";
-  import Loading from "../Shared/Loading";
-  
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
+import { useForm } from "react-hook-form";
+import Loading from "../Shared/Loading";
 
 const SignUp = () => {
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
-      const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
   let singInError;
   const {
@@ -28,34 +23,32 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
-
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  if (gLoading || loading) {
-    return <Loading></Loading>
+  if (gLoading || loading || updating) {
+    return <Loading></Loading>;
   }
 
-  if (error || gError) {
+  if (error || gError || updateError) {
     singInError = (
       <p className="text-red-500">
-        {error?.message} || {gError?.message}
+        <span>{error?.message || gError?.message || updateError?.message}</span>
       </p>
     );
   }
 
-  if(user || gUser){
-    navigate(from, { replace: true })
+  if (user || gUser) {
+    navigate(from, { replace: true });
   }
 
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
-    await updateProfile({ displayName: data.name})
-    
+    await updateProfile({ displayName: data.name });
   };
-    return (
-        <div className="flex h-screen justify-center items-center">
+  return (
+    <div className="flex h-screen justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-center text-2xl font-bold">Sing Up</h2>
@@ -72,7 +65,7 @@ const SignUp = () => {
                   required: {
                     value: true,
                     message: "Name Is Required",
-                  }
+                  },
                 })}
               />
               <label className="label">
@@ -81,7 +74,6 @@ const SignUp = () => {
                     {errors.name.message}
                   </span>
                 )}
-                
               </label>
             </div>
             <div className="form-control w-full max-w-xs">
@@ -155,7 +147,14 @@ const SignUp = () => {
               value="Sing Up"
             />
           </form>
-          <p><span>Already Have An Account? <Link to={'/login'} className="text-primary">Login Here</Link> </span></p>
+          <p>
+            <span>
+              Already Have An Account?{" "}
+              <Link to={"/login"} className="text-primary">
+                Login Here
+              </Link>{" "}
+            </span>
+          </p>
           <div className="divider">OR</div>
           <button
             onClick={() => signInWithGoogle()}
@@ -166,7 +165,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default SignUp;
