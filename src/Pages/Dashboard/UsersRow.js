@@ -18,6 +18,7 @@ const UsersRow = ({user, index, refetch}) => {
       .then(data => {
         if(data.modifiedCount > 0){
           refetch()
+          toast('ksdjflskd')
           console.log(data);
         }
       })

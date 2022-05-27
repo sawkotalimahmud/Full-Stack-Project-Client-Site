@@ -4,6 +4,7 @@ import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Footer from "./Pages/Shared/Footer";
 import Navbar from "./Pages/Shared/Navbar";
+import 'react-toastify/dist/ReactToastify.css';
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
 import { useEffect } from "react";
@@ -16,6 +17,7 @@ import MyOrder from "./Pages/Dashboard/MyOrder";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import MyReview from "./Pages/Dashboard/MyReview";
 import AllUsers from "./Pages/Dashboard/AllUsers";
+import RequireAdmin from "./Pages/Login/RequireAdmin";
 
 function App() {
   useEffect(() => {
@@ -47,7 +49,7 @@ function App() {
               <Route path="order" element={<MyOrder></MyOrder>}></Route>
               <Route path="profile" element={<MyProfile></MyProfile>}></Route>
               <Route path="review" element={<MyReview></MyReview>}></Route>
-              <Route path="users" element={<AllUsers></AllUsers>}></Route>
+              <Route path="users" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
           </Route>
         </Routes>
         <Footer />
