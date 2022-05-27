@@ -22,7 +22,7 @@ const MyOrder = () => {
     {/* <!-- head --> */}
     <thead>
       <tr>
-        <th></th>
+        <th>Name</th>
         <th>Product</th>
         <th>Price</th>
         <th>Quantity</th>
@@ -33,6 +33,7 @@ const MyOrder = () => {
         {
             orders.map((o, index) =><tr>
                 <th>{index + 1}</th>
+                <th>{o.ordererName}</th>
                 <td>{o.productName}</td>
                 <td>{o.price}</td>
                 <td>{o.quantity}</td>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -23,12 +23,16 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
-  const [token] =useToken(user || gUser)
+  const [token] = useToken(user || gUser)
 
   let singInError;
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
+
+  if(token){
+    navigate(from, { replace: true });
+   }
 
   if (gLoading || loading || updating) {
     return <Loading></Loading>;
@@ -42,9 +46,7 @@ const SignUp = () => {
     );
   }
 
-  if (token) {
-    navigate(from, { replace: true });
-  }
+ 
 
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);

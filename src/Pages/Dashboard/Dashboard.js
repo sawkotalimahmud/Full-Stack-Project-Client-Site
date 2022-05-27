@@ -18,10 +18,13 @@ const Dashboard = () => {
             <Link to="/dashboard/profile">My Profile</Link>
           </li>
           <li>
-              <Link to="order">My Order</Link>
+              <Link to="/dashboard/order">My Order</Link>
           </li>
           <li>
-            <Link to="review">My Review</Link>
+            <Link to="/dashboard/review">My Review</Link>
+          </li>
+          <li>
+            <Link to="/dashboard/users">All Users</Link>
           </li>
         </ul>
       </div>
