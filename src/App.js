@@ -18,6 +18,9 @@ import MyProfile from "./Pages/Dashboard/MyProfile";
 import MyReview from "./Pages/Dashboard/MyReview";
 import AllUsers from "./Pages/Dashboard/AllUsers";
 import RequireAdmin from "./Pages/Login/RequireAdmin";
+import AddProduct from "./Pages/Dashboard/AddProduct";
+import ManageProduct from "./Pages/Dashboard/ManageProduct";
+import UserOrders from "./Pages/Dashboard/UserOrders";
 
 function App() {
   useEffect(() => {
@@ -46,10 +49,13 @@ function App() {
                 <Dashboard></Dashboard>
               </PrivateRoute>
             }>
-              <Route path="order" element={<MyOrder></MyOrder>}></Route>
-              <Route path="profile" element={<MyProfile></MyProfile>}></Route>
+              <Route path="allOrder" element={<MyOrder></MyOrder>}></Route>
+              <Route path="order" element={<UserOrders></UserOrders>}></Route>
+              <Route index element={<MyProfile></MyProfile>}></Route>
               <Route path="review" element={<MyReview></MyReview>}></Route>
               <Route path="users" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
+              <Route path="addProduct" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
+              <Route path="manageProduct" element={<RequireAdmin><ManageProduct></ManageProduct></RequireAdmin>}></Route>
           </Route>
         </Routes>
         <Footer />
