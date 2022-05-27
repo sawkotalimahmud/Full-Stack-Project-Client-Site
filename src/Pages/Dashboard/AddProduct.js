@@ -1,12 +1,54 @@
 import React from 'react';
+import { toast } from "react-toastify";
 import { useForm } from 'react-hook-form';
 
 const AddProduct = () => {
-    const {register,formState: { errors }, handleSubmit,} = useForm();
+    const {register,formState: { errors }, handleSubmit, reset} = useForm();
+    const imageStorageKey = '084fa69935ad099d74d29646e67bac85';
 
 
     const onSubmit = async (data) => {
-        console.log(data);
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(result => {
+            if(result.success){
+                const img = result.data.url;
+                const product = {
+                    name : data.name,
+                    description: data.description,
+                    quantity: data.quantity,
+                    price: data.price,
+                    image: img
+                }
+                fetch('http://localhost:5000/addProduct', {
+                    method: 'POST',
+                    headers: {
+                        'content-type' : 'application/json',
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(product)
+                })
+                .then(res => res.json())
+                .then(inserted => { 
+                    if(inserted.insertedId){
+                        toast.success('Product Added Successfully');
+                        reset()
+                    }
+                    else{
+                        toast.error('Product Added Failed')
+                    }
+                })
+            }
+
+        })
+        
       };
     return (
         <div>
@@ -40,7 +82,7 @@ const AddProduct = () => {
                 <span className="label-text">Description</span>
               </label>
               <input
-                type="email"
+                type="text"
                 placeholder="Description"
                 className="input input-bordered w-full max-w-xs"
                 {...register("description", {
@@ -76,10 +118,10 @@ const AddProduct = () => {
                     value: true,
                     message: "Quantity Is Required",
                   },
-                  minLength: {
-                    value: 6,
-                    message: "Must Be Longer Then 6",
-                  },
+                //   minLength: {
+                //     value: 6,
+                //     message: "Must Be Longer Then 6",
+                //   },
                 })}
               />
               <label className="label">
@@ -108,10 +150,10 @@ const AddProduct = () => {
                     value: true,
                     message: "Price Is Required",
                   },
-                  minLength: {
-                    value: 6,
-                    message: "Must Be Longer Then 6",
-                  },
+                //   minLength: {
+                //     value: 6,
+                //     message: "Must Be Longer Then 6",
+                //   },
                 })}
               />
               <label className="label">
