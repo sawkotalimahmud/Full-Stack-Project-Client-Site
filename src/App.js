@@ -21,6 +21,7 @@ import RequireAdmin from "./Pages/Login/RequireAdmin";
 import AddProduct from "./Pages/Dashboard/AddProduct";
 import ManageProduct from "./Pages/Dashboard/ManageProduct";
 import UserOrders from "./Pages/Dashboard/UserOrders";
+import Payment from "./Pages/Dashboard/Payment";
 
 function App() {
   useEffect(() => {
@@ -53,6 +54,7 @@ function App() {
               <Route path="order" element={<UserOrders></UserOrders>}></Route>
               <Route index element={<MyProfile></MyProfile>}></Route>
               <Route path="review" element={<MyReview></MyReview>}></Route>
+              <Route path="payment/:id" element={<Payment></Payment>}></Route>
               <Route path="users" element={<RequireAdmin><AllUsers></AllUsers></RequireAdmin>}></Route>
               <Route path="addProduct" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
               <Route path="manageProduct" element={<RequireAdmin><ManageProduct></ManageProduct></RequireAdmin>}></Route>

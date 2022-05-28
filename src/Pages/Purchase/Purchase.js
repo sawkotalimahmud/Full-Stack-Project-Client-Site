@@ -21,7 +21,7 @@ const Purchase = () => {
   } = product;
 
   useEffect(() => {
-    const url = `http://localhost:5000/products/${productId}`;
+    const url = `http://fathomless-coast-67251.herokuapp.com/products/${productId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProduct(data));
@@ -39,7 +39,7 @@ const Purchase = () => {
       quantity: event.target.quantity.value,
     };
 
-    fetch("http://localhost:5000/orders", {
+    fetch("http://fathomless-coast-67251.herokuapp.com/orders", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -88,24 +88,28 @@ const Purchase = () => {
                 className="input input-bordered w-full max-w-auto gap-4 mt-3"
               />
               <input
+              required
                 type="text"
                 name="phone"
                 placeholder="Phone Number"
                 className="input input-bordered w-full max-w-auto gap-4 mt-3"
               />
               <input
+              required
                 type="text"
                 name="address"
                 placeholder="address"
                 className="input input-bordered w-full max-w-auto gap-4 mt-3"
               />
               <input
+              required
                 type="text"
                 name="price"
                 placeholder="price"
                 className="input input-bordered w-full max-w-auto gap-4 mt-3"
               />
               <input
+              required
                 type="text"
                 name="quantity"
                 placeholder="order quantity"

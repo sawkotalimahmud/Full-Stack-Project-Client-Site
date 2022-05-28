@@ -2,11 +2,11 @@ import React from "react";
 import { toast } from "react-toastify";
 
 const ProductRow = ({ p, index, refetch }) => {
-    const {name, image, quantity, price, email} = p;
+    const {name, image, quantity, price, _id} = p;
 
     const handleDelete = () => {
       window.alert('Are You Sure? you Want To Delete')
-        fetch(`http://localhost:5000/product/${email}`, {
+        fetch(`http://fathomless-coast-67251.herokuapp.com/product/${_id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

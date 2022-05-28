@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import ProductRow from './ProductRow';
 
 const ManageProduct = () => {
-    const { data: product, isLoading, refetch } = useQuery('manageProduct', () => fetch('http://localhost:5000/manageProduct', {
+    const { data: product, isLoading, refetch } = useQuery('manageProduct', () => fetch('http://fathomless-coast-67251.herokuapp.com/manageProduct', {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }

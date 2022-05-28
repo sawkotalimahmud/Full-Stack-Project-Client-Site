@@ -27,7 +27,7 @@ const AddProduct = () => {
                     price: data.price,
                     image: img
                 }
-                fetch('http://localhost:5000/addProduct', {
+                fetch('http://fathomless-coast-67251.herokuapp.com/addProduct', {
                     method: 'POST',
                     headers: {
                         'content-type' : 'application/json',
