@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const UsersRow = ({user, index, refetch}) => {
     const {email, role} = user;
     const makeAdmin = () =>{
-      fetch(`http://fathomless-coast-67251.herokuapp.com/user/admin/${email}`, {
+      fetch(`https://fathomless-coast-67251.herokuapp.com/user/admin/${email}`, {
         method : 'PUT',
         headers : {
           authorization : `Bearer ${localStorage.getItem('accessToken')}`
@@ -18,7 +18,7 @@ const UsersRow = ({user, index, refetch}) => {
       .then(data => {
         if(data.modifiedCount > 0){
           refetch()
-          toast('ksdjflskd')
+          toast('SuccessFull')
           console.log(data);
         }
       })

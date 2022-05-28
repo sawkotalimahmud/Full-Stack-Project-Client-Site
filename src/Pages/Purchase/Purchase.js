@@ -21,7 +21,7 @@ const Purchase = () => {
   } = product;
 
   useEffect(() => {
-    const url = `http://fathomless-coast-67251.herokuapp.com/products/${productId}`;
+    const url = `https://fathomless-coast-67251.herokuapp.com/products/${productId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProduct(data));
@@ -39,7 +39,7 @@ const Purchase = () => {
       quantity: event.target.quantity.value,
     };
 
-    fetch("http://fathomless-coast-67251.herokuapp.com/orders", {
+    fetch("https://fathomless-coast-67251.herokuapp.com/orders", {
       method: "post",
       headers: {
         "content-type": "application/json",

@@ -6,7 +6,7 @@ const ProductRow = ({ p, index, refetch }) => {
 
     const handleDelete = () => {
       window.alert('Are You Sure? you Want To Delete')
-        fetch(`http://fathomless-coast-67251.herokuapp.com/product/${_id}`, {
+        fetch(`https://fathomless-coast-67251.herokuapp.com/product/${_id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

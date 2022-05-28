@@ -8,12 +8,12 @@ const MyProfile = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://fathomless-coast-67251.herokuapp.com/orders/${user.email}`)
+      fetch(`https://fathomless-coast-67251.herokuapp.com/orders/${user.email}`)
         .then((res) => res.json())
         .then((data) => setOrders(data));
     }
   }, [user]);
-  console.log(orders);
+  console.log(user);
   return (
     <div>
       <h2>My Profile</h2>

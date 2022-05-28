@@ -9,15 +9,15 @@ const UserOrders = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://fathomless-coast-67251.herokuapp.com/orders/${user.email}`)
+      fetch(`https://fathomless-coast-67251.herokuapp.com/orders/${user.email}`)
         .then((res) => res.json())
         .then((data) => setOrders(data));
     }
   }, [user]);
-  console.log(orders);
+  console.log(orders, user.email);
   return (
     <div>
-      <h2>My Orders: {orders.length}</h2>
+      <h2>My Orders: {orders?.length}</h2>
       <div class="overflow-x-auto">
         <table class="table w-full">
           <thead>
@@ -31,7 +31,7 @@ const UserOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((o, index) => (
+            {orders?.map((o, index) => (
               <tr>
                 <th>{index + 1}</th>
                 <td>{o.productName}</td>
